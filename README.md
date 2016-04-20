@@ -1,6 +1,6 @@
 # Log-Book-Record-and-View-System
-## Record and view activity logs
-## Created just for fun. I'm using it during my internship.
+- Record and view activity logs
+- Created just for fun. I'm using it during my internship.
 
 # Created By
 1. Afif Zafri
