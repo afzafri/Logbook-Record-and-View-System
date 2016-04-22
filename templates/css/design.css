@@ -50,6 +50,13 @@
 	top:1px;
 }
 
+.signature {
+	float: right;
+	font-family:Calibri; 
+	font-size: 11.5px; 
+	color: black
+}
+
 @media print
 {
 .noprint {display:none;}
