@@ -88,6 +88,24 @@ if((isset($_POST['option'])) == "view")
 	
 	echo "</table>
 	</div>
+	<br><br>
+	";
+	
+	//generate field for Supervisor signature every Friday
+	if((date('D',strtotime($date))) == "Fri")
+	{
+		echo "
+		<div id='logtable'>
+		<div class='signature'>
+		Supervisor's Signature : <br><br>
+		_________________________<br>
+		(YOUR SUPERVISOR'S NAME)
+		</div>
+		</div>
+		";
+	}
+	
+	echo"
 	<br><br><br>
 	<div class='noprint'>
 	<input type='button' class='myButton' onClick='window.print()' value='Print'/>
