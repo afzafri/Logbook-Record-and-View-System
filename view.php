@@ -9,7 +9,7 @@ include './templates/header.php';
 <b>Choose Date : </b><input type="date" name="date">
 </div>
 <br>
-<div class="box-body table-responsive ">
+<div class="box-body table-responsive " id="responsivetablediv">
 	<div id="showLog"></div>
 </div>
 
