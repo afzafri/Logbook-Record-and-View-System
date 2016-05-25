@@ -2,28 +2,32 @@
 $title = "Record Logs";
 include './templates/header.php';
 ?>
-
+<div class="row">
 <h1 class='page-header'>Record Log Book</h1>
-<form action='index.php' method="post" id="addForm">
-<div id="inputtable">
-<table>
-<tr>
-<th>Activity : </th><td><div id="errAct"></div><textarea name="act" rows="5" cols="60" id='actbox'></textarea></td>
-<tr>
-</tr>
-<th>Date : </th><td><div id="errDate"></div><input type="date" name="date" id='datebox'></td>
-<tr>
-</tr>
-<th>Time : </th><td><div id="errTime"></div><input type="time" name="time" id='timebox'></td>
-</tr>
-
-</table>
+	<div class="col-lg-12">
+		
+			<form action='index.php' method="post" id="addForm">
+			<div id="inputtable">
+			<table>
+			<tr>
+			<th>Activity : </th><td><div id="errAct"></div><textarea class="form-control" name="act" rows="5" cols="60" id='actbox'></textarea></td>
+			</tr>
+			<tr>
+			<th>Date : </th><td><div id="errDate"></div><div class="col-xs-5"><input class="form-control" type="date" name="date" id='datebox'></div></td>
+			</tr>
+			<tr>
+			<th>Time : </th><td><div id="errTime"></div><div class="col-xs-4"><input class="form-control" type="time" name="time" id='timebox'></div></td>
+			</tr>
+			</table>
+			</div>
+			<br><br>
+			<input type="button" id="addBut" class="myButton" name="submit" value="Submit">
+			</form>
+			
+			<br>
+			<div id="status"></div>
+			
+	</div>
 </div>
-<br><br>
-<input type="button" id="addBut" class="myButton" name="submit" value="Submit">
-</form>
-
-<br>
-<div id="status"></div>
 
 <?php include './templates/footer.php'; ?>
