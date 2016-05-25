@@ -47,7 +47,7 @@ if((isset($_POST['option'])) == "view")
   <div class='noprint'>
   <h3>Practical Training Log Book Entry - ".date('d/m/Y',strtotime($date))."</h3></div>
   <div id='logtable'>
-  <table width='100%'>
+  <table width='100%' class='table table-bordered table-hover'>
   <tr>
   <th>Date & Time</th>
   <th>Exact Nature Of Work Done</th>
