@@ -65,6 +65,11 @@
 				 <li>
 					<a href="./view.php"><i class="fa fa-table fa-fw"></i>View Logs</a>
 				</li>
+				<br>
+				<li>
+					<div class="logo"></div><br>
+					<center><b>UiTM - Afif Zafri <br> Copyright &copy; <?php if(date('Y') == '2016'){echo '2016';}else{echo '2016 - ' . date('Y');} ?> </b></center><br>
+				</li>
 				
 				</ul>
                 </div>
