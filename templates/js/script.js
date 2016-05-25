@@ -58,5 +58,17 @@ $(document).ready(function(){
 		
 	});
 	
+	//hide reponsive table div element when print, so that the content will fit to A4 when print
+	$(document).on("click","#printBut",function(){
+		//remove responsive class attribute
+		$('#responsivetablediv').removeAttr("class");
+		
+		//open print window
+		window.print();
+		
+		//after open print window, add back the responsive class
+		$("#responsivetablediv").addClass('box-body table-responsive');
+	});
+	
 	
 });
