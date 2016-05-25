@@ -8,8 +8,10 @@ include './templates/header.php';
 <form action='view.php' method="post" id="viewLog">
 <b>Choose Date : </b><input type="date" name="date">
 </div>
-
-<div id="showLog"></div>
+<br>
+<div class="box-body table-responsive ">
+	<div id="showLog"></div>
+</div>
 
 
 <?php include './templates/footer.php'; ?>
