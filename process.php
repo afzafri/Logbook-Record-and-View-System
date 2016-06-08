@@ -108,7 +108,7 @@ if((isset($_POST['option'])) == "view")
 	echo"
 	<br><br><br>
 	<div class='noprint'>
-	<input type='button' class='myButton' value='Print' id='printBut'/>
+	<input type='button' class='btn btn-primary' value='Print' id='printBut'/>
 	</div>
 	
 	";
