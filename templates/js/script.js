@@ -40,6 +40,28 @@ $(document).ready(function(){
 		
 	});
 	
+	//count text and display current char count, show warning and disable submit when reached limit
+	$('#actbox').keyup(function () {
+	  var max = 250;
+	  var len = $(this).val().length;
+	  
+	  if (len >= (max-10) && len <= max) {
+		 var char = max - len;
+		$('#charNum').html("<font color='red'>"+char + " characters left</font>");
+	  } 
+	  else if (len >= max) {
+		 var char = max - len;
+		$('#charNum').html("<font color='red'>"+char + " you have reached the limit</font>");
+		$('#addBut').prop('disabled', true);
+	  } 
+	  else {
+		var char = max - len;
+		$('#charNum').text(char + ' characters left');
+		$('#addBut').prop('disabled', false);
+	  }
+	  
+	});
+	
 	//view log
 	//jQuery will detect if the input Date value is change, it will execute function
 	//there is no need to press submit button anymore
