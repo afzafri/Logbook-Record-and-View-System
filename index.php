@@ -10,7 +10,7 @@ include './templates/header.php';
 			<div id="inputtable">
 			<table>
 			<tr>
-			<th>Activity : </th><td><div id="errAct"></div><textarea class="form-control" name="act" rows="5" cols="60" id='actbox'></textarea></td>
+			<th>Activity : </th><td><div id="errAct"></div><textarea class="form-control" name="act" rows="5" cols="60" id='actbox'></textarea><div id="charNum">250 characters left</div></td>
 			</tr>
 			<tr>
 			<th>Date : </th><td><div id="errDate"></div><div class="col-xs-5"><input class="form-control" type="date" name="date" id='datebox'></div></td>
@@ -21,7 +21,7 @@ include './templates/header.php';
 			</table>
 			</div>
 			<br><br>
-			<input type="button" id="addBut" class="myButton" name="submit" value="Submit">
+			<input type="button" id="addBut" class="btn btn-primary" name="submit" value="Submit">
 			</form>
 			
 			<br>
