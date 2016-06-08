@@ -48,6 +48,7 @@ $(document).ready(function(){
 	  if (len >= (max-10) && len <= max) {
 		 var char = max - len;
 		$('#charNum').html("<font color='red'>"+char + " characters left</font>");
+		$('#addBut').prop('disabled', false);
 	  } 
 	  else if (len >= max) {
 		 var char = max - len;
