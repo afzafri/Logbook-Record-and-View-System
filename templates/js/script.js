@@ -1,6 +1,21 @@
+function setDefaultDateTime() {
+	$('#datebox').val(new moment().format("DD/MM/YYYY"));
+
+	// Time Picker
+	$('#timebox').val(new moment().format("HH:mm"));
+}
+
 //To determine if the webpage (document) is "ready" or fully loaded
 //then will execute the functions
 $(document).ready(function(){
+
+	// Init Pikaday Date Picker
+	var picker = new Pikaday({
+		field: $('#datebox')[0],
+		format: 'DD/MM/YYYY'
+	});
+
+	setDefaultDateTime();
 
 	//add log
 	//jQuery will detect if button with ID "addBut" is clicked, then execute the function
@@ -26,6 +41,8 @@ $(document).ready(function(){
 					$('#actbox').val("");
 					$('#datebox').val("");
 					$('#timebox').val("");
+
+					setDefaultDateTime();
 
 			});
 		}
@@ -107,6 +124,5 @@ $(document).ready(function(){
 			$('.navbar-toggle').click();
 		}
 	}
-
 
 });
