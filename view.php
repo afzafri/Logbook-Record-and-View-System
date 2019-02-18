@@ -1,4 +1,4 @@
-<?php 
+<?php
 $title = "View Logs";
 include './templates/header.php';
 ?>
@@ -9,7 +9,7 @@ include './templates/header.php';
 		<form action='view.php' method="post" id="viewLog">
 			<table>
 				<tr>
-					<th>Choose Date : </th><td><div class="col-xs-15"><input type="date" name="date" class="form-control" id="selectDate"></div></td>
+					<th>Choose Date : </th><td><div class="col-xs-15"><input type="text" name="date" class="form-control" id="selectDate"></div></td>
 				</tr>
 			</table>
 		</form>

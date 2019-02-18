@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 	// Init Pikaday Date Picker
 	var picker = new Pikaday({
-		field: $('#datebox')[0],
+		field: $('#datebox, #selectDate')[0],
 		format: 'DD/MM/YYYY'
 	});
 
