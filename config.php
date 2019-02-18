@@ -4,6 +4,6 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "data";
+$dbname = "logbook";
 
 ?>
