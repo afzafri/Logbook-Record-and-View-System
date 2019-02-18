@@ -33,10 +33,15 @@ include './templates/header.php';
 <?php include './templates/footer.php'; ?>
 
 <script type="text/javascript">
+
+	// Date Picker
 	var picker = new Pikaday({
 		field: $('#datebox')[0],
 		format: 'DD/MM/YYYY'
 	});
 
 	picker.setDate(new Date());
+
+	// Time Picker
+	$('#timebox').val(new moment().format("HH:mm"));
 </script>
