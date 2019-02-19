@@ -22,14 +22,17 @@
     <!-- Pikaday CSS -->
     <link href="./templates/css/pikaday.css" rel="stylesheet">
 
+    <!-- Summernote -->
+    <link href="./templates/bower_components/summernote/summernote.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="./templates/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="./templates/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-	<!-- Custom 2 -->
-	<link rel="stylesheet" type="text/css" href="./templates/css/design.css">
+  	<!-- Custom 2 -->
+  	<link rel="stylesheet" type="text/css" href="./templates/css/design.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

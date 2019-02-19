@@ -9,6 +9,11 @@ function setDefaultDateTime() {
 //then will execute the functions
 $(document).ready(function(){
 
+	// Init Summernote
+	$('#actbox').summernote({
+		height: 200,
+	});
+
 	// Init Pikaday Date Picker
 	var picker = new Pikaday({
 		field: $('#datebox, #selectDate')[0],
@@ -38,7 +43,7 @@ $(document).ready(function(){
 					var stattext = "<b><font color='lime' size='4'>Success</font></b>"
 					$('#status').append(stattext).hide().fadeIn('slow'); //append is to add success status to the page
 					//empty all input
-					$('#actbox').val("");
+					$('#actbox').summernote('code', '');
 					$('#datebox').val("");
 					$('#timebox').val("");
 
@@ -62,9 +67,10 @@ $(document).ready(function(){
 	});
 
 	//count text and display current char count, show warning and disable submit when reached limit
-	$('#actbox').keyup(function () {
+	$(".note-editable").on("keypress", function(){
+	//$('#actbox').keyup(function () {
 	  var max = 250;
-	  var len = $(this).val().length;
+	  var len = $(this).text().length;
 
 	  if (len >= (max-10) && len <= max) {
 		 var char = max - len;

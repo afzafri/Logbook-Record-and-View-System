@@ -25,6 +25,9 @@
     <!-- Pikaday JavaScript -->
     <script src="./templates/js/pikaday.js"></script>
 
+    <!-- Summernote -->
+    <script src="./templates/bower_components/summernote/summernote.js"></script>
+
     <!-- Custom Theme JavaScript -->
     <script src="./templates/dist/js/sb-admin-2.js"></script>
 
