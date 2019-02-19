@@ -74,7 +74,7 @@ if((isset($_POST['option'])) == "view")
 
 			<tr>
 			<td>".date('d/m/Y',strtotime($dates))." <br>- $time</td>
-			<td><li>$act</td>
+			<td><li>$act</li></td>
 			<td></td>
 			</tr>
 
