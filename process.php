@@ -24,7 +24,7 @@ if((isset($_POST['option'])) == "add")
   if(isset($_POST['act']) && isset($_POST['date']) && isset($_POST['time']))
   {
 		$date = DateTime::createFromFormat('d/m/Y', $_POST['date']);
-		
+
 		try
 		{
 
@@ -94,7 +94,7 @@ if((isset($_POST['option'])) == "view")
 	";
 
 	//generate field for Supervisor signature every Friday
-	if((date('D',strtotime($_POST['date']))) == "Fri")
+	if($date->format('D') == "Fri")
 	{
 		echo "
 		<div id='logtable'>
