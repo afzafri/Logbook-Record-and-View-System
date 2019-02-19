@@ -87,8 +87,7 @@ $(document).ready(function(){
 	//view log
 	//jQuery will detect if the input Date value is change, it will execute function
 	//there is no need to press submit button anymore
-	$('input').on("change",function(){
-
+	function getLogs() {
 		$('#showLog').empty();
 
 		var view = "option=view&"+$('#viewLog').serialize();
@@ -99,8 +98,17 @@ $(document).ready(function(){
 				$('#showLog').append(data).hide().fadeIn('slow');
 
 		});
+	}
 
-	});
+	if($('#showLog').length > 0) {
+		$('#selectDate').val(new moment().format("DD/MM/YYYY"));
+
+		getLogs();
+
+		$('input').on("change",function(){
+			getLogs();
+		});
+	}
 
 	//hide reponsive table div element when print, so that the content will fit to A4 when print
 	$(document).on("click","#printBut",function(){
