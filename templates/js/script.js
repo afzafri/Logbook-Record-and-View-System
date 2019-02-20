@@ -103,7 +103,69 @@ $(document).ready(function(){
 				//append the data received from the PHP to the webpage. will add to the <div id="showLog"></div> in view.php
 				$('#showLog').append(data).hide().fadeIn('slow');
 
+				initDataTables();
+
 		});
+	}
+
+	function initDataTables() {
+		var logTitle = $('#logTitle').text();
+
+		$('#logbookData').dataTable().fnDestroy();
+		var table = $('#logbookData').DataTable( {
+			"ordering": false,
+			"searching": false,
+			"pageLength": 50,
+       dom: 'Bfrtilp',
+       buttons: [
+             'copy',
+             {
+                  extend: 'excel',
+                  text: '<i class="fa fa-fw fa-file-excel-o"></i> Excel',
+                  titleAttr: 'Export all data into Excel file',
+                  title: logTitle,
+              },
+              {
+                   extend: 'csv',
+                   text: '<i class="fa fa-fw fa-file-excel-o"></i> CSV',
+                   titleAttr: 'Export all data into CSV file',
+                   title: logTitle,
+               },
+            {
+                 extend: 'pdf',
+                 text: '<i class="fa fa-fw fa-file-pdf-o"></i> PDF',
+                 titleAttr: 'Export all data into PDF file',
+                 title: logTitle,
+             },
+             {
+                  extend: 'print',
+                  text: '<i class="fa fa-fw fa-print"></i> Print',
+                  titleAttr: 'Print Data',
+                  title: logTitle,
+									customize: function(win) {
+										//generateSignature(date, win);
+										var date = $('#selectDate').val();
+										generateSignature(date, win);
+								  }
+              }
+       ],
+   });
+	}
+
+	//generate field for Supervisor signature every Friday
+	function generateSignature(date, win) {
+ 	 if(moment(date,'DD/MM/YYYY').day() == 5) {
+
+ 		 var signature = "<div id='logtable'>"+
+ 									 		"<div class='signature'>"+
+ 									 		"Supervisor's Signature : <br><br>"+
+ 									 		"_________________________<br>"+
+ 									 		"(YOUR SUPERVISOR'S NAME)"+
+ 									 	  "</div>"+
+ 									 		"</div>";
+
+ 		$(win.document.body).append(signature);
+ 	 }
 	}
 
 	if($('#showLog').length > 0) {
@@ -115,18 +177,6 @@ $(document).ready(function(){
 			getLogs();
 		});
 	}
-
-	//hide reponsive table div element when print, so that the content will fit to A4 when print
-	$(document).on("click","#printBut",function(){
-		//remove responsive class attribute
-		$('#responsivetablediv').removeAttr("class");
-
-		//open print window
-		window.print();
-
-		//after open print window, add back the responsive class
-		$("#responsivetablediv").addClass('box-body table-responsive');
-	});
 
 	//mobile view
 	if (($('#desktopTest').is(':hidden')) && ($('.navbar-toggle').attr('data-toggle') != "collapse")) {

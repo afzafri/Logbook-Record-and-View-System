@@ -47,15 +47,18 @@ if((isset($_POST['option'])) == "view")
 
   echo "
   <div class='noprint'>
-  <h3>Practical Training Log Book Entry - ".$_POST['date']."</h3></div>
+  <h3 id='logTitle'>Practical Training Log Book Entry - ".$_POST['date']."</h3></div>
   <div id='logtable'>
-  <table width='100%' class='table table-bordered table-hover'>
+  <table width='100%' class='table table-bordered table-hover' id='logbookData'>
+	<thead>
   <tr>
   <th>Date & Time</th>
   <th>Exact Nature Of Work Done</th>
   <th>Supervisor Remark
   </th>
   </tr>
+	</thead>
+	<tbody>
 
   ";
   try
@@ -88,31 +91,9 @@ if((isset($_POST['option'])) == "view")
 		echo "Connection Error : " . $e->getMessage();
 	}
 
-	echo "</table>
+	echo "</tbody</table>
 	</div>
 	<br><br>
-	";
-
-	//generate field for Supervisor signature every Friday
-	if($date->format('D') == "Fri")
-	{
-		echo "
-		<div id='logtable'>
-		<div class='signature'>
-		Supervisor's Signature : <br><br>
-		_________________________<br>
-		(YOUR SUPERVISOR'S NAME)
-		</div>
-		</div>
-		";
-	}
-
-	echo"
-	<br><br><br>
-	<div class='noprint'>
-	<input type='button' class='btn btn-primary' value='Print' id='printBut'/>
-	</div>
-
 	";
 
 }

@@ -28,6 +28,9 @@
     <!-- Summernote -->
     <script src="./templates/bower_components/summernote/summernote.js"></script>
 
+    <!-- DataTables -->
+    <script src="./templates/bower_components/DataTables/datatables.js"></script>
+
     <!-- Custom Theme JavaScript -->
     <script src="./templates/dist/js/sb-admin-2.js"></script>
 

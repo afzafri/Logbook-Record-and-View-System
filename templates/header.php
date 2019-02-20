@@ -10,8 +10,8 @@
     <meta name="author" content="">
     <title><?php echo $title ?></title>
 
-	<!-- Favicon -->
-	<link href="./templates/images/uitmlogo.png" rel="shortcut icon">
+	  <!-- Favicon -->
+	  <link href="./templates/images/uitmlogo.png" rel="shortcut icon">
 
     <!-- Bootstrap Core CSS -->
     <link href="./templates/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +24,9 @@
 
     <!-- Summernote -->
     <link href="./templates/bower_components/summernote/summernote.css" rel="stylesheet">
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="./templates/bower_components/DataTables/datatables.css">
 
     <!-- Custom CSS -->
     <link href="./templates/dist/css/sb-admin-2.css" rel="stylesheet">
