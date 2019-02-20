@@ -43,11 +43,14 @@ if((isset($_POST['option'])) == "add")
 //view log
 if((isset($_POST['option'])) == "view")
 {
-	$date = DateTime::createFromFormat('d/m/Y', $_POST['date']);
+	$startdate = DateTime::createFromFormat('d/m/Y', $_POST['startdate'])->format('Y-m-d');
+	$enddate = ($_POST['enddate'] != "") ? DateTime::createFromFormat('d/m/Y', $_POST['enddate'])->format('Y-m-d') : "";
+
+	$datetext = ($_POST['enddate'] != "") ? $_POST['startdate'] . " to " . $_POST['enddate'] : $_POST['startdate'];
 
   echo "
   <div class='noprint'>
-  <h3 id='logTitle'>Practical Training Log Book Entry - ".$_POST['date']."</h3></div>
+  <h3 id='logTitle'>Practical Training Log Book Entry - ".$datetext."</h3></div>
   <div id='logtable'>
   <table width='100%' class='table table-bordered table-hover' id='logbookData'>
 	<thead>
@@ -64,8 +67,14 @@ if((isset($_POST['option'])) == "view")
   try
 	{
 
-		$stmt = $conn->prepare("SELECT ACT,DATE,DATE_FORMAT(TIME,'%h:%i %p') AS NEWTIME FROM LOGBOOK WHERE DATE=?");
-		$stmt->execute(array($date->format('Y-m-d')));
+		if($_POST['enddate'] != "") {
+			$stmt = $conn->prepare("SELECT ACT,DATE,DATE_FORMAT(TIME,'%h:%i %p') AS NEWTIME FROM LOGBOOK WHERE DATE BETWEEN ? AND ?");
+			$stmt->execute(array($startdate, $enddate));
+		} else {
+			$stmt = $conn->prepare("SELECT ACT,DATE,DATE_FORMAT(TIME,'%h:%i %p') AS NEWTIME FROM LOGBOOK WHERE DATE = ?");
+			$stmt->execute(array($startdate));
+		}
+
 
 		while($result=$stmt->fetch(PDO::FETCH_ASSOC))
 		{

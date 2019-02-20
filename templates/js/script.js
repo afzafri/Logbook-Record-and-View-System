@@ -16,7 +16,12 @@ $(document).ready(function(){
 
 	// Init Pikaday Date Picker
 	var picker = new Pikaday({
-		field: $('#datebox, #selectDate')[0],
+		field: $('#datebox, #selectStartDate')[0],
+		format: 'DD/MM/YYYY'
+	});
+
+	var picker2 = new Pikaday({
+		field: $('#selectEndDate')[0],
 		format: 'DD/MM/YYYY'
 	});
 
@@ -144,7 +149,7 @@ $(document).ready(function(){
                   title: logTitle,
 									customize: function(win) {
 										//generateSignature(date, win);
-										var date = $('#selectDate').val();
+										var date = $('#selectStartDate').val();
 										generateSignature(date, win);
 								  }
               }
@@ -169,7 +174,7 @@ $(document).ready(function(){
 	}
 
 	if($('#showLog').length > 0) {
-		$('#selectDate').val(new moment().format("DD/MM/YYYY"));
+		$('#selectStartDate').val(new moment().format("DD/MM/YYYY"));
 
 		getLogs();
 

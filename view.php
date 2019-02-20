@@ -8,7 +8,16 @@ include './templates/header.php';
 	<form action='view.php' method="post" id="viewLog">
 		<table>
 			<tr>
-				<th>Choose Date : </th><td><div class="col-xs-15"><input type="text" name="date" class="form-control" id="selectDate"></div></td>
+				<th>Choose Date : </th>
+				<td>
+						<input type="text" name="startdate" class="form-control" id="selectStartDate">
+				</td>
+				<td>
+					to
+				</td>
+				<td>
+					<input type="text" name="enddate" class="form-control" id="selectEndDate">
+				</td>
 			</tr>
 		</table>
 	</form>
