@@ -43,7 +43,7 @@ if((isset($_POST['option'])) == "add")
 //view log
 if((isset($_POST['option'])) == "view")
 {
-	$startdate = DateTime::createFromFormat('d/m/Y', $_POST['startdate'])->format('Y-m-d');
+	$startdate = ($_POST['startdate'] != "") ? (DateTime::createFromFormat('d/m/Y', $_POST['startdate']))->format('Y-m-d') : "";
 	$enddate = ($_POST['enddate'] != "") ? DateTime::createFromFormat('d/m/Y', $_POST['enddate'])->format('Y-m-d') : "";
 
 	$datetext = ($_POST['enddate'] != "") ? $_POST['startdate'] . " to " . $_POST['enddate'] : $_POST['startdate'];
