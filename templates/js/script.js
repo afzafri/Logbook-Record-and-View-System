@@ -183,15 +183,4 @@ $(document).ready(function(){
 		});
 	}
 
-	//mobile view
-	if (($('#desktopTest').is(':hidden')) && ($('.navbar-toggle').attr('data-toggle') != "collapse")) {
-		// device is == eXtra Small
-	} else {
-		// device is >= SMaller
-		for(var i=0;i<2;i++)
-		{
-			$('.navbar-toggle').click();
-		}
-	}
-
 });
