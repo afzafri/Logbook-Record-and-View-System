@@ -45,8 +45,8 @@ $(document).ready(function(){
 			//jQuery POST function. will send data from input form to PHP using POST just like $_POST
 			$.post("process.php" , add , function(data){
 
-					var stattext = "<b><font color='lime' size='4'>Success</font></b>"
-					$('#status').append(stattext).hide().fadeIn('slow'); //append is to add success status to the page
+					swal("Success!", "Log recorded", "success");
+
 					//empty all input
 					$('#actbox').summernote('code', '');
 					$('#datebox').val("");

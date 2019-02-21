@@ -31,6 +31,9 @@
     <!-- DataTables -->
     <script src="./templates/bower_components/DataTables/datatables.js"></script>
 
+    <!-- SweetAlert -->
+    <script src="./templates/js/sweetalert.min.js"></script>
+
     <!-- Custom Theme JavaScript -->
     <script src="./templates/dist/js/sb-admin-2.js"></script>
 

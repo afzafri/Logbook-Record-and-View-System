@@ -25,7 +25,6 @@ include './templates/header.php';
 			</form>
 
 			<br>
-			<div id="status"></div>
 
 	</div>
 </div>
