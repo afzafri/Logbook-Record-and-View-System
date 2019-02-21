@@ -50,7 +50,7 @@ if((isset($_POST['option'])) == "view")
 
   echo "
   <div class='noprint'>
-  <h3 id='logTitle'>Practical Training Log Book Entry - ".$datetext."</h3></div>
+  <h3 id='logTitle'>Practical Training Logbook Entry - ".$datetext."</h3></div>
   <div id='logtable'>
   <table width='100%' class='table table-bordered table-hover' id='logbookData'>
 	<thead>

@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title><?php echo $title ?></title>
+    <title><?php echo $title ?> | Logbook</title>
 
 	  <!-- Favicon -->
-	  <link href="./templates/images/uitmlogo.png" rel="shortcut icon">
+	  <link href="./templates/images/logbooklogo_icon.ico" rel="shortcut icon">
 
     <!-- Bootstrap Core CSS -->
     <link href="./templates/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -60,7 +60,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Log Book Record & View System</a>
+                <a class="navbar-brand" href="index.php">Logbook Record & View System</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -76,8 +76,8 @@
 				</li>
 				<br>
 				<li>
-					<div class="logo"></div><br>
-					<center><b>UiTM - Afif Zafri <br> Copyright &copy; <?php if(date('Y') == '2016'){echo '2016';}else{echo '2016 - ' . date('Y');} ?> </b></center><br>
+					<img src="./templates/images/logbooklogo.png" class="img-responsive" style="margin: 0 auto;"/><br>
+					<center><b><a href="https://github.com/afzafri">Afif Zafri</a> <br> Copyright &copy; <?php if(date('Y') == '2016'){echo '2016';}else{echo '2016 - ' . date('Y');} ?> </b></center><br>
 				</li>
 
 				</ul>

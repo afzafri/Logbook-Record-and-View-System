@@ -3,7 +3,7 @@ $title = "Record Logs";
 include './templates/header.php';
 ?>
 <div class="row">
-<h1 class='page-header'>Record Log Book</h1>
+<h1 class='page-header'>Record Logbook</h1>
 	<div class="col-lg-12">
 
 			<form action='index.php' method="post" id="addForm">

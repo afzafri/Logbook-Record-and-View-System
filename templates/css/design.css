@@ -4,14 +4,6 @@
 #inputtable table td,th { border: none; }
 #inputtable th, td { padding: 10px; }
 
-.logo {
-    width: 80px;
-    height: 99px;
-    background: url('../images/uitmlogo.png') no-repeat;
-	background-size: 80px;
-    margin: auto;
-}
-
 .signature {
 	float: right;
 	font-family:Calibri;
