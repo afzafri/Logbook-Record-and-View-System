@@ -55,6 +55,7 @@ if((isset($_POST['option'])) == "view")
   <table width='100%' class='table table-bordered table-hover' id='logbookData'>
 	<thead>
   <tr>
+	<th width='2'>&nbsp;</th>
   <th>Date & Time</th>
   <th>Exact Nature Of Work Done</th>
   <th>Supervisor Remark
@@ -68,16 +69,17 @@ if((isset($_POST['option'])) == "view")
 	{
 
 		if($_POST['enddate'] != "") {
-			$stmt = $conn->prepare("SELECT ACT,DATE,DATE_FORMAT(TIME,'%h:%i %p') AS NEWTIME FROM LOGBOOK WHERE DATE BETWEEN ? AND ?");
+			$stmt = $conn->prepare("SELECT ID,ACT,DATE,DATE_FORMAT(TIME,'%h:%i %p') AS NEWTIME FROM LOGBOOK WHERE DATE BETWEEN ? AND ?");
 			$stmt->execute(array($startdate, $enddate));
 		} else {
-			$stmt = $conn->prepare("SELECT ACT,DATE,DATE_FORMAT(TIME,'%h:%i %p') AS NEWTIME FROM LOGBOOK WHERE DATE = ?");
+			$stmt = $conn->prepare("SELECT ID,ACT,DATE,DATE_FORMAT(TIME,'%h:%i %p') AS NEWTIME FROM LOGBOOK WHERE DATE = ?");
 			$stmt->execute(array($startdate));
 		}
 
 
 		while($result=$stmt->fetch(PDO::FETCH_ASSOC))
 		{
+			$id = $result['ID'];
 			$dates = $result['DATE'];
 			$act = $result['ACT'];
 			$time = $result['NEWTIME'];
@@ -85,6 +87,9 @@ if((isset($_POST['option'])) == "view")
 			echo "
 
 			<tr>
+			<td text-align='center'>
+				<button class='btn btn-sm btn-danger' id='delBtn' delID='$id'>&times;</button>
+			</td>
 			<td>".date('d/m/Y',strtotime($dates))." <br>- $time</td>
 			<td><li>$act</li></td>
 			<td></td>
@@ -104,6 +109,23 @@ if((isset($_POST['option'])) == "view")
 	</div>
 	<br><br>
 	";
+
+}
+
+//Delete log
+if((isset($_POST['option'])) == "delete")
+{
+	$delID = (isset($_POST['id']) ? $_POST['id'] : null);
+
+  try
+	{
+		$stmt = $conn->prepare("DELETE FROM LOGBOOK WHERE ID = ?");
+		$stmt->execute(array($delID));
+	}
+	catch(PDOException $e)
+	{
+		echo "Connection Error : " . $e->getMessage();
+	}
 
 }
 

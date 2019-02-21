@@ -183,4 +183,22 @@ $(document).ready(function(){
 		});
 	}
 
+	// Delete log
+	$(document).on("click", "#delBtn", function () {
+		var delID = $(this).attr("delID");
+		var row = $(this).closest("tr"); // Finds the closest row <tr>
+
+		var deletes = "option=delete&id="+delID;
+
+		if (confirm('Delete log?')) {
+			$.post("process.php" , deletes , function(data){
+
+				var item = row.fadeOut("slow", function() {
+													 $(this).remove();
+												 });
+			});
+		}
+
+	});
+
 });
