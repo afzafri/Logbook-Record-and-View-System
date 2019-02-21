@@ -1,9 +1,4 @@
-#logtable { width:210mm;}
-#logtable table { border: 1px solid #000; border-collapse: collapse; }
-#logtable table th { background-color: #99bbff; text-align:center; border: 1px solid #000;}
-#logtable table td { text-align:left;}
-#logtable table td,th { border: 1px solid #000; }
-#logtable th, td { padding: 10px; }
+#logtable table th { background-color: #99bbff; text-align:center;}
 
 #inputtable table { border: none;}
 #inputtable table td,th { border: none; }
@@ -19,8 +14,8 @@
 
 .signature {
 	float: right;
-	font-family:Calibri; 
-	font-size: 11.5px; 
+	font-family:Calibri;
+	font-size: 11.5px;
 	color: black
 }
 
