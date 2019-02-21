@@ -1,4 +1,4 @@
-# Log-Book-Record-and-View-System
+# Logbook Record and View System
 - Record and view activity logs
 - Created just for fun. I'm using it during my internship.
 
@@ -6,17 +6,25 @@
 1. Afif Zafri
 2. Contact me : http://fb.me/afzafri
 
-# Features 
+# Features
 - Receive activity, date, and time input
 - Simple and easy to use interface
-- Generate logs based on date choosen in table form
-- Print the generated table function
+- Generate and tabulate logs based on single date, or dates range chosen
+- Export the generated logbook (Print, PDF, Excel, CSV)
 
 # Installation
-1. Create a database name "data".
+1. Create a database name "logbook".
 2. Import the table using the provided file "logbook.sql".
 3. Drag and drop all files into your localhost directory or webserver
 4. Configure the "config.php" file (db servername, db username & password)
+
+# Components Used
+- SB Admin 2 (old Bootstrap 3.0 version)
+- jQuery Library
+- Moment.js
+- Pikaday.js
+- Summernote
+- SweetAlert
 
 ## Contributing
 
@@ -28,5 +36,4 @@
 
 ## License
 
-Free to use and distribute
-
+This project is under ```MIT license```, please look at the LICENSE file
