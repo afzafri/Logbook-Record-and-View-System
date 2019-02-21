@@ -88,7 +88,7 @@ if((isset($_POST['option'])) == "view")
 
 			<tr>
 			<td text-align='center'>
-				<button class='btn btn-sm btn-danger' id='delBtn' delID='$id'>&times;</button>
+				<button class='btn btn-sm btn-danger' id='delBtn' delID='$id' title='Delete log'>&times;</button>
 			</td>
 			<td>".date('d/m/Y',strtotime($dates))." <br>- $time</td>
 			<td><li>$act</li></td>
