@@ -190,14 +190,25 @@ $(document).ready(function(){
 
 		var deletes = "option=delete&id="+delID;
 
-		if (confirm('Delete log?')) {
-			$.post("process.php" , deletes , function(data){
-
-				var item = row.fadeOut("slow", function() {
-													 $(this).remove();
-												 });
+		swal({
+			  title: "Are you sure?",
+			  text: "Do you want to delete this log?",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+					$.post("process.php" , deletes , function(data){
+						swal("Log deleted.", {
+					    icon: "success",
+					  });
+						var item = row.fadeOut("slow", function() {
+												 $(this).remove();
+											 });
+					});
+			  }
 			});
-		}
 
 	});
 
