@@ -120,6 +120,10 @@ $(document).ready(function(){
 		var table = $('#logbookData').DataTable( {
 			"ordering": false,
 			"searching": false,
+			aLengthMenu: [
+	        [25, 50, 100, 200, -1],
+	        [25, 50, 100, 200, "All"]
+	    ],
 			"pageLength": 50,
        dom: 'Bfrtilp',
        buttons: [
