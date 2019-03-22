@@ -74,6 +74,9 @@
 				 <li>
 					<a href="./view.php"><i class="fa fa-table fa-fw"></i>View Logs</a>
 				</li>
+        <li>
+         <a href="./download.php"><i class="fa fa-download fa-fw"></i>Download Logs</a>
+       </li>
 				<br>
 				<li>
 					<img src="./templates/images/logbooklogo.png" class="img-responsive" style="margin: 0 auto;"/><br>

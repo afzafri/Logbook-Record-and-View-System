@@ -228,4 +228,24 @@ $(document).ready(function(){
 
 	});
 
+	// Download Logs
+	$('#downloadBtn').click(function() {
+		var startdate = $('#selectStartDate').val();
+		var enddate = $('#selectEndDate').val();
+
+		if(startdate != "" && enddate != "") {
+
+			var success = '<div class="alert alert-success">Logs for '+startdate+' to '+enddate+' successfully downloaded.</div>';
+			$('#alert').empty("");
+			$('#alert').append(success).hide().fadeIn('slow');
+
+			window.location.href = "./process.php?generate&startdate="+startdate+"&enddate="+enddate;
+		} else {
+
+			var error = '<div class="alert alert-danger">Please select both start and end date to download.</div>';
+			$('#alert').empty("");
+			$('#alert').append(error).hide().fadeIn('slow');
+		}
+	});
+
 });
