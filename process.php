@@ -156,8 +156,44 @@ if(isset($_POST['option']))
 			foreach ($result as $element) {
 			    $sorted[$element['DATE']][] = $element;
 			}
-			
-			echo json_encode($sorted);
+
+			$tablehead = "<table border='1px;' style='border-collapse: collapse;width:210mm;'>
+			<thead>
+		  <tr style='background-color: #99bbff; text-align:center;'>
+		  <th width='100px'>Date & Time</th>
+		  <th>Exact Nature Of Work Done</th>
+		  <th width='150px'>Supervisor Remark
+		  </th>
+		  </tr>
+			</thead>
+			<tbody>";
+
+			$tablefooter = 	"</tbody</table>";
+
+			foreach ($sorted as $date => $logs) {
+
+				$tablebody = "";
+
+				foreach ($logs as $key => $log) {
+					$id = $log['ID'];
+					$dates = $log['DATE'];
+					$act = $log['ACT'];
+					$time = $log['NEWTIME'];
+
+					$tablebody .= "
+					<tr>
+					<td>".date('d/m/Y',strtotime($dates))." <br>- $time</td>
+					<td>".strip_tags($act)."</td>
+					<td></td>
+					</tr>
+					";
+				}
+
+				echo $tablehead . $tablebody . $tablefooter;
+				echo "<br><br>";
+
+			}
+			//echo json_encode($sorted);
 
 		}
 		catch(PDOException $e)
