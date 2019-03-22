@@ -14,119 +14,125 @@ catch(PDOException $e)
 }
 
 //add log
-if((isset($_POST['option'])) == "add")
+
+if(isset($_POST['option']))
 {
+	$option = (isset($_POST['option'])) ? $_POST['option'] : "";
 
-  $act = (isset($_POST['act']) ? $_POST['act'] : null);
-  $date = (isset($_POST['date']) ? $_POST['date'] : null);
-  $time = (isset($_POST['time']) ? $_POST['time'] : null);
+	if($option == "add")
+	{
 
-  if(isset($_POST['act']) && isset($_POST['date']) && isset($_POST['time']))
-  {
-		$date = DateTime::createFromFormat('d/m/Y', $_POST['date']);
+	  $act = (isset($_POST['act']) ? $_POST['act'] : null);
+	  $date = (isset($_POST['date']) ? $_POST['date'] : null);
+	  $time = (isset($_POST['time']) ? $_POST['time'] : null);
 
-		try
+	  if(isset($_POST['act']) && isset($_POST['date']) && isset($_POST['time']))
+	  {
+			$date = DateTime::createFromFormat('d/m/Y', $_POST['date']);
+
+			try
+			{
+
+				$stmt = $conn->prepare("INSERT INTO LOGBOOK (ACT,DATE,TIME) VALUES(?,?,?) ");
+				$stmt->execute(array($act,$date->format('Y-m-d'),$time));
+
+			}
+			catch(PDOException $e)
+			{
+				echo "Connection Error : " . $e->getMessage();
+			}
+	  }
+
+	}
+
+	//view log
+	if($option == "view")
+	{
+		$startdate = ($_POST['startdate'] != "") ? (DateTime::createFromFormat('d/m/Y', $_POST['startdate']))->format('Y-m-d') : "";
+		$enddate = ($_POST['enddate'] != "") ? DateTime::createFromFormat('d/m/Y', $_POST['enddate'])->format('Y-m-d') : "";
+
+		$datetext = ($_POST['enddate'] != "") ? $_POST['startdate'] . " to " . $_POST['enddate'] : $_POST['startdate'];
+
+	  echo "
+	  <div class='noprint'>
+	  <h3 id='logTitle'>Practical Training Logbook Entry - ".$datetext."</h3></div>
+	  <div id='logtable'>
+	  <table width='100%' class='table table-bordered table-hover' id='logbookData'>
+		<thead>
+	  <tr>
+		<th width='2'>&nbsp;</th>
+	  <th>Date & Time</th>
+	  <th>Exact Nature Of Work Done</th>
+	  <th>Supervisor Remark
+	  </th>
+	  </tr>
+		</thead>
+		<tbody>
+
+	  ";
+	  try
 		{
 
-			$stmt = $conn->prepare("INSERT INTO LOGBOOK (ACT,DATE,TIME) VALUES(?,?,?) ");
-			$stmt->execute(array($act,$date->format('Y-m-d'),$time));
+			if($_POST['enddate'] != "") {
+				$stmt = $conn->prepare("SELECT ID,ACT,DATE,DATE_FORMAT(TIME,'%h:%i %p') AS NEWTIME FROM LOGBOOK WHERE DATE BETWEEN ? AND ?");
+				$stmt->execute(array($startdate, $enddate));
+			} else {
+				$stmt = $conn->prepare("SELECT ID,ACT,DATE,DATE_FORMAT(TIME,'%h:%i %p') AS NEWTIME FROM LOGBOOK WHERE DATE = ?");
+				$stmt->execute(array($startdate));
+			}
+
+
+			while($result=$stmt->fetch(PDO::FETCH_ASSOC))
+			{
+				$id = $result['ID'];
+				$dates = $result['DATE'];
+				$act = $result['ACT'];
+				$time = $result['NEWTIME'];
+
+				echo "
+
+				<tr>
+				<td text-align='center'>
+					<button class='btn btn-sm btn-danger' id='delBtn' delID='$id' title='Delete log'>&times;</button>
+				</td>
+				<td>".date('d/m/Y',strtotime($dates))." <br>- $time</td>
+				<td><li>$act</li></td>
+				<td></td>
+				</tr>
+
+				";
+
+			}
 
 		}
 		catch(PDOException $e)
 		{
 			echo "Connection Error : " . $e->getMessage();
 		}
-  }
 
-}
+		echo "</tbody</table>
+		</div>
+		<br><br>
+		";
 
-//view log
-if((isset($_POST['option'])) == "view")
-{
-	$startdate = ($_POST['startdate'] != "") ? (DateTime::createFromFormat('d/m/Y', $_POST['startdate']))->format('Y-m-d') : "";
-	$enddate = ($_POST['enddate'] != "") ? DateTime::createFromFormat('d/m/Y', $_POST['enddate'])->format('Y-m-d') : "";
+	}
 
-	$datetext = ($_POST['enddate'] != "") ? $_POST['startdate'] . " to " . $_POST['enddate'] : $_POST['startdate'];
-
-  echo "
-  <div class='noprint'>
-  <h3 id='logTitle'>Practical Training Logbook Entry - ".$datetext."</h3></div>
-  <div id='logtable'>
-  <table width='100%' class='table table-bordered table-hover' id='logbookData'>
-	<thead>
-  <tr>
-	<th width='2'>&nbsp;</th>
-  <th>Date & Time</th>
-  <th>Exact Nature Of Work Done</th>
-  <th>Supervisor Remark
-  </th>
-  </tr>
-	</thead>
-	<tbody>
-
-  ";
-  try
+	//Delete log
+	if($option == "delete")
 	{
+		$delID = (isset($_POST['id']) ? $_POST['id'] : null);
 
-		if($_POST['enddate'] != "") {
-			$stmt = $conn->prepare("SELECT ID,ACT,DATE,DATE_FORMAT(TIME,'%h:%i %p') AS NEWTIME FROM LOGBOOK WHERE DATE BETWEEN ? AND ?");
-			$stmt->execute(array($startdate, $enddate));
-		} else {
-			$stmt = $conn->prepare("SELECT ID,ACT,DATE,DATE_FORMAT(TIME,'%h:%i %p') AS NEWTIME FROM LOGBOOK WHERE DATE = ?");
-			$stmt->execute(array($startdate));
-		}
-
-
-		while($result=$stmt->fetch(PDO::FETCH_ASSOC))
+	  try
 		{
-			$id = $result['ID'];
-			$dates = $result['DATE'];
-			$act = $result['ACT'];
-			$time = $result['NEWTIME'];
-
-			echo "
-
-			<tr>
-			<td text-align='center'>
-				<button class='btn btn-sm btn-danger' id='delBtn' delID='$id' title='Delete log'>&times;</button>
-			</td>
-			<td>".date('d/m/Y',strtotime($dates))." <br>- $time</td>
-			<td><li>$act</li></td>
-			<td></td>
-			</tr>
-
-			";
-
+			$stmt = $conn->prepare("DELETE FROM LOGBOOK WHERE ID = ?");
+			$stmt->execute(array($delID));
+		}
+		catch(PDOException $e)
+		{
+			echo "Connection Error : " . $e->getMessage();
 		}
 
 	}
-	catch(PDOException $e)
-	{
-		echo "Connection Error : " . $e->getMessage();
-	}
-
-	echo "</tbody</table>
-	</div>
-	<br><br>
-	";
-
-}
-
-//Delete log
-if((isset($_POST['option'])) == "delete")
-{
-	$delID = (isset($_POST['id']) ? $_POST['id'] : null);
-
-  try
-	{
-		$stmt = $conn->prepare("DELETE FROM LOGBOOK WHERE ID = ?");
-		$stmt->execute(array($delID));
-	}
-	catch(PDOException $e)
-	{
-		echo "Connection Error : " . $e->getMessage();
-	}
-
 }
 
 
