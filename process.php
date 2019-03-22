@@ -131,7 +131,39 @@ if(isset($_POST['option']))
 		{
 			echo "Connection Error : " . $e->getMessage();
 		}
+	}
 
+	if($option == "generate")
+	{
+		$startdate = ($_POST['startdate'] != "") ? (DateTime::createFromFormat('d/m/Y', $_POST['startdate']))->format('Y-m-d') : "";
+		$enddate = ($_POST['enddate'] != "") ? DateTime::createFromFormat('d/m/Y', $_POST['enddate'])->format('Y-m-d') : "";
+
+
+		try
+		{
+
+			$stmt = $conn->prepare("
+															SELECT ID,ACT,DATE,DATE_FORMAT(TIME,'%h:%i %p') AS NEWTIME
+															FROM LOGBOOK
+															WHERE DATE BETWEEN ? AND ?
+															");
+
+			$stmt->execute(array($startdate, $enddate));
+
+			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+			$sorted = array();
+			foreach ($result as $element) {
+			    $sorted[$element['DATE']][] = $element;
+			}
+			
+			echo json_encode($sorted);
+
+		}
+		catch(PDOException $e)
+		{
+			echo "Connection Error : " . $e->getMessage();
+		}
 	}
 }
 
