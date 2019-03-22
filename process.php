@@ -133,11 +133,11 @@ if(isset($_POST['option']))
 		}
 	}
 
-	if($option == "generate")
+	if($option == "generateJSON")
 	{
+
 		$startdate = ($_POST['startdate'] != "") ? (DateTime::createFromFormat('d/m/Y', $_POST['startdate']))->format('Y-m-d') : "";
 		$enddate = ($_POST['enddate'] != "") ? DateTime::createFromFormat('d/m/Y', $_POST['enddate'])->format('Y-m-d') : "";
-
 
 		try
 		{
@@ -157,49 +157,84 @@ if(isset($_POST['option']))
 			    $sorted[$element['DATE']][] = $element;
 			}
 
-			$tablehead = "<table border='1px;' style='border-collapse: collapse;width:210mm;'>
-			<thead>
-		  <tr style='background-color: #99bbff; text-align:center;'>
-		  <th width='100px'>Date & Time</th>
-		  <th>Exact Nature Of Work Done</th>
-		  <th width='150px'>Supervisor Remark
-		  </th>
-		  </tr>
-			</thead>
-			<tbody>";
-
-			$tablefooter = 	"</tbody</table>";
-
-			foreach ($sorted as $date => $logs) {
-
-				$tablebody = "";
-
-				foreach ($logs as $key => $log) {
-					$id = $log['ID'];
-					$dates = $log['DATE'];
-					$act = $log['ACT'];
-					$time = $log['NEWTIME'];
-
-					$tablebody .= "
-					<tr>
-					<td>".date('d/m/Y',strtotime($dates))." <br>- $time</td>
-					<td>".strip_tags($act)."</td>
-					<td></td>
-					</tr>
-					";
-				}
-
-				echo $tablehead . $tablebody . $tablefooter;
-				echo "<br><br>";
-
-			}
-			//echo json_encode($sorted);
+			echo json_encode($sorted);
 
 		}
 		catch(PDOException $e)
 		{
 			echo "Connection Error : " . $e->getMessage();
 		}
+	}
+}
+
+if(isset($_GET['generate']))
+{
+	$startdate = (isset($_GET['startdate'])) ? (DateTime::createFromFormat('d/m/Y', $_GET['startdate']))->format('Y-m-d') : "";
+	$enddate = (isset($_GET['enddate'])) ? DateTime::createFromFormat('d/m/Y', $_GET['enddate'])->format('Y-m-d') : "";
+
+	$datetext = "Internship Log Book (" . $_GET['startdate'] . " to " . $_GET['enddate'] .")";
+
+	header("Content-Type: application/vnd.ms-word");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+	header("content-disposition: attachment;filename=".$datetext.".doc");
+	try
+	{
+
+		$stmt = $conn->prepare("
+														SELECT ID,ACT,DATE,DATE_FORMAT(TIME,'%h:%i %p') AS NEWTIME
+														FROM LOGBOOK
+														WHERE DATE BETWEEN ? AND ?
+														");
+
+		$stmt->execute(array($startdate, $enddate));
+
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$sorted = array();
+		foreach ($result as $element) {
+				$sorted[$element['DATE']][] = $element;
+		}
+
+		$tablehead = "<table width='100%' border='1' style='border-collapse: collapse'>
+		<tr style='background-color: #99bbff; text-align:center;'>
+		<th width='100px'>Date & Time</th>
+		<th>Exact Nature Of Work Done</th>
+		<th width='150px'>Supervisor Remark
+		</th>
+		</tr>
+		</thead>";
+
+		$tablefooter = 	"</table>";
+
+		foreach ($sorted as $date => $logs) {
+
+			$tablebody = "";
+
+			foreach ($logs as $key => $log) {
+				$id = $log['ID'];
+				$dates = $log['DATE'];
+				$act = $log['ACT'];
+				$time = $log['NEWTIME'];
+
+				$tablebody .= "
+				<tr>
+				<td>".date('d/m/Y',strtotime($dates))." <br>- $time</td>
+				<td>".strip_tags($act)."</td>
+				<td></td>
+				</tr>
+				";
+			}
+
+			echo $tablehead . $tablebody . $tablefooter;
+			echo "<br><br><br><br><br><br><br><br>";
+
+		}
+
+	}
+	catch(PDOException $e)
+	{
+		echo "Connection Error : " . $e->getMessage();
 	}
 }
 
