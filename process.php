@@ -226,7 +226,23 @@ if(isset($_GET['generate']))
 				";
 			}
 
-			echo $tablehead . $tablebody . $tablefooter . '<br style="page-break-before: always">';
+			echo $tablehead . $tablebody . $tablefooter;
+
+			//generate field for Supervisor signature every Friday
+			if(date('D',strtotime($date)) == "Fri")
+			{
+				echo "
+				<br><br>
+				<div class='signature' style='text-align: right;font-family: Calibri;font-size: 11.5px;color: black;'>
+				Supervisor's Signature : <br><br>
+				_________________________<br>
+				(YOUR SUPERVISOR'S NAME)
+				</div>
+				<br><br><br>
+				";
+			}
+
+			echo '<br style="page-break-before: always">'; // page break
 
 		}
 
