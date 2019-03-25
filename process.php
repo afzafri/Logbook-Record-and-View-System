@@ -226,8 +226,7 @@ if(isset($_GET['generate']))
 				";
 			}
 
-			echo $tablehead . $tablebody . $tablefooter;
-			echo "<br><br><br><br><br><br><br><br>";
+			echo $tablehead . $tablebody . $tablefooter . '<br style="page-break-before: always">';
 
 		}
 
