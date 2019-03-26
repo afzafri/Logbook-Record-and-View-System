@@ -52,7 +52,7 @@ if(isset($_POST['option']))
 		$enddate = (isset($_POST['enddate'])) ? $_POST['enddate'] : "";
 
 		if($startdate != "") {
-			$startDT = DateTime::createFromFormat('d/m/Y', startdate);
+			$startDT = DateTime::createFromFormat('d/m/Y', $startdate);
 			$startdate = $startDT->format('Y-m-d');
 		}
 
@@ -149,7 +149,7 @@ if(isset($_POST['option']))
 		$enddate = (isset($_POST['enddate'])) ? $_POST['enddate'] : "";
 
 		if($startdate != "") {
-			$startDT = DateTime::createFromFormat('d/m/Y', startdate);
+			$startDT = DateTime::createFromFormat('d/m/Y', $startdate);
 			$startdate = $startDT->format('Y-m-d');
 		}
 
@@ -192,7 +192,7 @@ if(isset($_GET['generate']))
 	$enddate = (isset($_POST['enddate'])) ? $_POST['enddate'] : "";
 
 	if($startdate != "") {
-		$startDT = DateTime::createFromFormat('d/m/Y', startdate);
+		$startDT = DateTime::createFromFormat('d/m/Y', $startdate);
 		$startdate = $startDT->format('Y-m-d');
 	}
 
