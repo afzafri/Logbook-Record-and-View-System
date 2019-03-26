@@ -48,10 +48,20 @@ if(isset($_POST['option']))
 	//view log
 	if($option == "view")
 	{
-		$startdate = ($_POST['startdate'] != "") ? (DateTime::createFromFormat('d/m/Y', $_POST['startdate']))->format('Y-m-d') : "";
-		$enddate = ($_POST['enddate'] != "") ? DateTime::createFromFormat('d/m/Y', $_POST['enddate'])->format('Y-m-d') : "";
+		$startdate = (isset($_POST['startdate'])) ? $_POST['startdate'] : "";
+		$enddate = (isset($_POST['enddate'])) ? $_POST['enddate'] : "";
 
-		$datetext = ($_POST['enddate'] != "") ? $_POST['startdate'] . " to " . $_POST['enddate'] : $_POST['startdate'];
+		if($startdate != "") {
+			$startDT = DateTime::createFromFormat('d/m/Y', startdate);
+			$startdate = $startDT->format('Y-m-d');
+		}
+
+		if($enddate != "") {
+			$startDT = DateTime::createFromFormat('d/m/Y', $enddate);
+			$enddate = $startDT->format('Y-m-d');
+		}
+
+		$datetext = ($enddate != "") ? $startdate . " to " . $enddate : $startdate;
 
 	  echo "
 	  <div class='noprint'>
@@ -135,9 +145,18 @@ if(isset($_POST['option']))
 
 	if($option == "generateJSON")
 	{
+		$startdate = (isset($_POST['startdate'])) ? $_POST['startdate'] : "";
+		$enddate = (isset($_POST['enddate'])) ? $_POST['enddate'] : "";
 
-		$startdate = ($_POST['startdate'] != "") ? (DateTime::createFromFormat('d/m/Y', $_POST['startdate']))->format('Y-m-d') : "";
-		$enddate = ($_POST['enddate'] != "") ? DateTime::createFromFormat('d/m/Y', $_POST['enddate'])->format('Y-m-d') : "";
+		if($startdate != "") {
+			$startDT = DateTime::createFromFormat('d/m/Y', startdate);
+			$startdate = $startDT->format('Y-m-d');
+		}
+
+		if($enddate != "") {
+			$startDT = DateTime::createFromFormat('d/m/Y', $enddate);
+			$enddate = $startDT->format('Y-m-d');
+		}
 
 		try
 		{
@@ -169,10 +188,20 @@ if(isset($_POST['option']))
 
 if(isset($_GET['generate']))
 {
-	$startdate = (isset($_GET['startdate'])) ? (DateTime::createFromFormat('d/m/Y', $_GET['startdate']))->format('Y-m-d') : "";
-	$enddate = (isset($_GET['enddate'])) ? DateTime::createFromFormat('d/m/Y', $_GET['enddate'])->format('Y-m-d') : "";
+	$startdate = (isset($_POST['startdate'])) ? $_POST['startdate'] : "";
+	$enddate = (isset($_POST['enddate'])) ? $_POST['enddate'] : "";
 
-	$datetext = "Internship Log Book (" . $_GET['startdate'] . " to " . $_GET['enddate'] .")";
+	if($startdate != "") {
+		$startDT = DateTime::createFromFormat('d/m/Y', startdate);
+		$startdate = $startDT->format('Y-m-d');
+	}
+
+	if($enddate != "") {
+		$startDT = DateTime::createFromFormat('d/m/Y', $enddate);
+		$enddate = $startDT->format('Y-m-d');
+	}
+
+	$datetext = "Internship Log Book (" . $startdate . " to " . $enddate .")";
 
 	header("Content-Type: application/vnd.ms-word");
 	header("Expires: 0");
