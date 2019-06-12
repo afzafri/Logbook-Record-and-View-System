@@ -188,8 +188,8 @@ if(isset($_POST['option']))
 
 if(isset($_GET['generate']))
 {
-	$startdate = (isset($_POST['startdate'])) ? $_POST['startdate'] : "";
-	$enddate = (isset($_POST['enddate'])) ? $_POST['enddate'] : "";
+	$startdate = (isset($_GET['startdate'])) ? $_GET['startdate'] : "";
+	$enddate = (isset($_GET['enddate'])) ? $_GET['enddate'] : "";
 
 	if($startdate != "") {
 		$startDT = DateTime::createFromFormat('d/m/Y', $startdate);
