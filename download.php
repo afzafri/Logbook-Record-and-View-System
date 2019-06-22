@@ -10,7 +10,7 @@ include './templates/header.php';
 
   <table>
     <tr>
-      <th>Supervisor's Name</th>
+      <th>Supervisor's Name : </th>
       <td colspan="4">
         <input type="text" name="svName" class="form-control" id="svName" placeholder="(optional)">
       </td>
