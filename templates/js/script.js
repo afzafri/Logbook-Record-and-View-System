@@ -232,6 +232,7 @@ $(document).ready(function(){
 	$('#downloadBtn').click(function() {
 		var startdate = $('#selectStartDate').val();
 		var enddate = $('#selectEndDate').val();
+		var sv_name = $('#svName').val();
 
 		if(startdate != "" && enddate != "") {
 
@@ -239,7 +240,7 @@ $(document).ready(function(){
 			$('#alert').empty("");
 			$('#alert').append(success).hide().fadeIn('slow');
 
-			window.location.href = "./process.php?generate&startdate="+startdate+"&enddate="+enddate;
+			window.location.href = "./process.php?generate&startdate="+startdate+"&enddate="+enddate+"&svname="+sv_name;
 		} else {
 
 			var error = '<div class="alert alert-danger">Please select both start and end date to download.</div>';

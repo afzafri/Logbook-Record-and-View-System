@@ -10,6 +10,12 @@ include './templates/header.php';
 
   <table>
     <tr>
+      <th>Supervisor's Name</th>
+      <td colspan="4">
+        <input type="text" name="svName" class="form-control" id="svName" placeholder="(optional)">
+      </td>
+    </tr>
+    <tr>
       <th>Choose Date : </th>
       <td>
           <input type="text" name="startdate" class="form-control" id="selectStartDate">

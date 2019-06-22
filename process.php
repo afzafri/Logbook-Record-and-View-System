@@ -190,6 +190,8 @@ if(isset($_GET['generate']))
 {
 	$startdate = (isset($_GET['startdate'])) ? $_GET['startdate'] : "";
 	$enddate = (isset($_GET['enddate'])) ? $_GET['enddate'] : "";
+	$sv_name = (isset($_GET['svname'])) ? $_GET['svname'] : "YOUR SUPERVISOR'S NAME";
+
 
 	if($startdate != "") {
 		$startDT = DateTime::createFromFormat('d/m/Y', $startdate);
@@ -265,7 +267,7 @@ if(isset($_GET['generate']))
 				<div class='signature' style='text-align: right;font-family: Calibri;font-size: 11.5px;color: black;'>
 				Supervisor's Signature : <br><br>
 				_________________________<br>
-				(YOUR SUPERVISOR'S NAME)
+				(".$sv_name.")
 				</div>
 				<br><br><br>
 				";
