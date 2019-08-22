@@ -106,7 +106,7 @@ if(isset($_POST['option']))
 					<button class='btn btn-sm btn-danger' id='delBtn' delID='$id' title='Delete log'>&times;</button>
 				</td>
 				<td>".date('d/m/Y',strtotime($dates))." <br>- $time</td>
-				<td><li>$act</li></td>
+				<td>$act</td>
 				<td></td>
 				</tr>
 
